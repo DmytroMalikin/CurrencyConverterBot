@@ -1,4 +1,3 @@
-# coding=utf-8
 import telebot
 from telebot.apihelper import ApiException
 
@@ -6,8 +5,9 @@ import settings
 from functions import *
 from errors import *
 
-bot = telebot.TeleBot(settings.token)
+bot = telebot.TeleBot(settings.TOKEN)
 assets = get_asset_dictionary()
+currencies = requests.get()
 
 
 @bot.message_handler(commands=['start'])
@@ -72,4 +72,5 @@ def check_support(message):
     return False
 
 
+bot.send_message(settings.support_id, "I'm alive!")
 bot.polling(none_stop=True, interval=0)
